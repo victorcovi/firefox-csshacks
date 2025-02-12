@@ -1,3 +1,6 @@
+#root.root {--toolbar-bg: rgb(35, 34, 43);}
+#root.root {--frame-bg: rgb(35, 34, 43);}
+#root.root {--nav-btn-fg: #ccc;}
 #root.root {--tabs-indent: 0px;}
 #root.root {--general-border-radius: 4px;}
 #root.root {--tabs-height: 32px;}
@@ -88,7 +91,7 @@
 #root.root {--ctx-menu-icon-opt-height: 30px;}
 #root.root {--d-swift: 0.1s;}
 
-#root.root {--nav-btn-fg: #ccc;}
+
 #root.root {--nav-delimiter-size: 1em;}
 #root.root {--nav-hidden-btn-border-radius: 0.5em;}
 #root.root {--nav-btn-width: 36px;}
