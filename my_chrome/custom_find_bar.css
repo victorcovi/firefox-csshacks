@@ -1,0 +1,94 @@
+/*   ______ 'Find' (search) bar (Ctrl + F) ______   */
+
+/* Move the "Find" Bar to the top of the page */
+.browserContainer>findbar {
+    -moz-box-ordinal-group: 0;
+    /* -moz-box-ordinal-group seemingly stopped working,
+    on v112 or v113 so I changed it to an absolute position below. */
+    transition: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    transition-duration: 200ms;
+    /* extra styling - move it to top right, narrower, and rounded */
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1em;
+    width: 100%;
+    border-radius: 1em;
+    /* this is a vertical list now */
+    max-width: 20em;
+
+    /* unfortunately this blur doesn't work - left as example */
+    background-image: none;
+    -webkit-backdrop-filter: blur(6px);
+    -moz-backdrop-filter: blur(6px);
+    -ms-backdrop-filter: blur(6px);
+    -o-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+
+    /* animate opacity change */
+    /* background-color: rgba(0, 0, 0, 1); */
+    transition: opacity 200ms ease-in-out;
+    opacity: 0.6;
+}
+
+/* make it opaque when hovered */
+.browserContainer>findbar:hover {
+    /* animate opacity change */
+    transition: opacity 200ms ease-in-out;
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion) {
+    .browserContainer>findbar {
+        transition: none !important;
+    }
+
+    .browserContainer>findbar:hover {
+        transition: none !important;
+    }
+}
+
+findbar>.findbar-container {
+    /* this is a horizontal list by default - make it a vertical list and left align */
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    height: auto !important;
+    align-items: flex-start !important;
+    /* that is not aligning left. Try this: */
+    margin: 0 !important;
+    padding: 0 !important;
+    /* inherit background */
+    background-color: inherit !important;
+}
+
+/* pad all children e.g. text input, buttons */
+findbar>.findbar-container>* {
+    padding: 1em !important;
+    background-color: inherit !important;
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0 !important;
+}
+
+findbar>.findbar-closebutton {
+    position: absolute;
+    bottom: 1em;
+    right: 0;
+    cursor: pointer;
+}
+
+/* text input for search */
+/* findbar>.findbar-container>hbox {} */
+
+.findbar-container,
+.findbar-textbox:not([status="notfound"]),
+.findbar-closebutton.close-icon {
+    background-color: var(--bg) !important;
+    padding: 0 0.5em !important;
+}
+
+.findbar-find-previous:not(:hover),
+.findbar-find-next:not(:hover) {
+    background: var(--bg) !important;
+}
