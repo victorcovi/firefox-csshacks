@@ -1,108 +1,205 @@
-#root.root {--toolbar-bg: rgb(35, 34, 43);}
-#root.root {--frame-bg: rgb(35, 34, 43);}
-#root.root {--nav-btn-fg: #ccc;}
-#root.root {--tabs-indent: 0px;}
-#root.root {--general-border-radius: 4px;}
-#root.root {--tabs-height: 32px;}
-#root.root {--pinned-tabs-col: 4;}
+#root.root {
+  --tabs-margin: 2px;
+}
+#root.root {
+  --tabs-discarded-favicon-opacity: 0.48;
+}
+#root.root {
+  --ctx-menu-icon-opt-height: 30px;
+}
+#root.root {
+  --frame-bg: #1e1d24;
+}
+#root.root {
+  --notification-bg: #42414dff;
+}
+#root.root {
+  --toolbar-bg: #1e1d24;
+}
+
+#root.root {
+  --general-border-radius: 25px;
+}
+
+#root.root {
+  --nav-btn-fg: #ccc;
+}
+#root.root {
+  --tabs-indent: 0px;
+}
+
+#root.root {
+  --tabs-height: 32px;
+}
+#root.root {
+  --pinned-tabs-col: 4;
+}
 #root.root {
   flex-direction: column;
 }
 
 .NavigationBar .main-items {
-    justify-content: center;
+  justify-content: center;
 }
 
 .Tab {
-    min-width: 33px;
-    transition: all ease-in-out 200ms;
+  min-width: 33px;
+  transition: all ease-in-out 200ms;
 }
 
 .NavigationBar {
-    transition: all ease-in-out 200ms;
+  transition: all ease-in-out 200ms;
 }
 
 .NavigationBar[data-layout="inline"] .main-items .nav-item {
-    transform: translateX(0) !important;
-    position: relative !important;
-    flex-grow: 1;
-    max-width: 66px;
+  transform: translateX(0) !important;
+  position: relative !important;
+  flex-grow: 1;
+  max-width: 66px;
 }
 
-.NavigationBar[data-layout="inline"] .main-items .nav-item[data-active="false"] {
-    display: none;
+.NavigationBar[data-layout="inline"]
+  .main-items
+  .nav-item[data-active="false"] {
+  display: none;
 }
 
 .BottomBar {
-    display: none;
+  display: none;
 }
 
-.Tab .audio, .Tab .title {
-    opacity: 0 !important;
-    transition: ease-in-out 250ms;
+.Tab .audio,
+.Tab .title {
+  opacity: 0 !important;
+  transition: ease-in-out 250ms;
 }
 
-.Tab[data-pin="true"] .fav, .Tab[data-pin="true"] .fav-icon {
-    width: 20px;
-    height: 20px;
+.Tab[data-pin="true"] .fav,
+.Tab[data-pin="true"] .fav-icon {
+  width: 20px;
+  height: 20px;
 }
 
-.Tab[data-pin="false"] .fav, .Tab[data-pin="false"] .fav-icon {
-    width: 18px;
-    height: 18px;
+.Tab[data-pin="false"] .fav,
+.Tab[data-pin="false"] .fav-icon {
+  width: 18px;
+  height: 18px;
 }
 
 .Tab[data-pin="false"] .color-layer {
-    opacity: 0 !important;
-    border: 0 !important;
+  opacity: 0 !important;
+  border: 0 !important;
 }
 
 .Tab[data-pin="false"][data-active="true"] .body {
-    box-shadow: rgba(17, 17, 26, 0.15) 0px 0px 16px;
+  box-shadow: rgba(17, 17, 26, 0.15) 0px 0px 16px;
 }
 
 .Tab[data-pin="false"] {
-    border: 0 !important;
+  border: 0 !important;
 }
 
 .Tab .title {
-	background: linear-gradient(90deg, var(--tabs-normal-fg) 80%, #f1f1f100 99%);
-	background-clip: text;
-	color: transparent;
+  background: linear-gradient(90deg, var(--tabs-normal-fg) 80%, #f1f1f100 99%);
+  background-clip: text;
+  color: transparent;
+}
+
+/* Apply grayscale to inactive/unselected tabs */
+.Tab[data-pin="false"]:not([data-active="true"], [data-selected="true"]) .fav,
+.Tab[data-pin="false"]:not([data-active="true"], [data-selected="true"])
+  .fav-icon {
+  filter: grayscale(100%) !important;
+}
+
+/* Remove grayscale on hover */
+.Tab[data-pin="false"]:not([data-active="true"], [data-selected="true"]):hover
+  .fav,
+.Tab[data-pin="false"]:not([data-active="true"], [data-selected="true"]):hover
+  .fav-icon {
+  filter: grayscale(0%) !important;
+}
+
+.Tab .fav,
+.Tab .fav-icon {
+  transition: filter 0.1s ease !important;
 }
 
 @media screen and (min-width: 350px) {
-  .NavigationBar[data-layout="inline"] .main-items .nav-item[data-active="false"] {
-      display: flex;
+  .NavigationBar[data-layout="inline"]
+    .main-items
+    .nav-item[data-active="false"] {
+    display: flex;
   }
   .BottomBar {
-      display: flex;
+    display: flex;
   }
-  
-  .Tab .audio, .Tab .title {
-      opacity: 1 !important;
+
+  .Tab .audio,
+  .Tab .title {
+    opacity: 1 !important;
   }
-  #root.root {--tabs-pinned-height: 40px;}
-  #root.root {--tabs-pinned-width: calc((100vw - (var(--tabs-margin) * (var(--pinned-tabs-col) + 1))) / var(--pinned-tabs-col));}
+  #root.root {
+    --tabs-pinned-height: 40px;
+  }
+  #root.root {
+    --tabs-pinned-width: calc(
+      (100vw - (var(--tabs-margin) * (var(--pinned-tabs-col) + 1))) /
+        var(--pinned-tabs-col)
+    );
+  }
 }
 
-#root.root {--ctx-menu-padding: 0.3em;}
-#root.root {--ctx-menu-opt-padding: 0.3em;}
-#root.root {--ctx-menu-icon-opt-height: 30px;}
-#root.root {--d-swift: 0.1s;}
+#root.root {
+  --ctx-menu-padding: 0.3em;
+}
+#root.root {
+  --ctx-menu-opt-padding: 0.3em;
+}
 
+#root.root {
+  --d-swift: 0.1s;
+}
 
-#root.root {--nav-delimiter-size: 1em;}
-#root.root {--nav-hidden-btn-border-radius: 0.5em;}
-#root.root {--nav-btn-width: 36px;}
-#root.root {--nav-btn-height: 38px;}
-#root.root {--tabs-height: 36px;}
-#root.root {--tabs-font: 0.9375rem system-ui;}
-#root.root {--tabs-count-font: 0.5625rem system-ui;}
-#root.root {--tabs-pinned-width: 32px;}
-#root.root {--tabs-inner-gap: 10px;}
-#root.root {--tabs-close-btn-margin: 3px;}
-#root.root {--tabs-lvl-opacity: 0.01;}
-#root.root {--tabs-activated-bg: rgba(255,255,255,0.141);}
-#root.root {--tabs-normal-fg: #ccc;}
-#root.root {--tabs-border-radius: 0.5em;}
+#root.root {
+  --nav-delimiter-size: 1em;
+}
+#root.root {
+  --nav-hidden-btn-border-radius: 0.5em;
+}
+#root.root {
+  --nav-btn-width: 36px;
+}
+#root.root {
+  --nav-btn-height: 38px;
+}
+#root.root {
+  --tabs-height: 36px;
+}
+#root.root {
+  --tabs-font: 0.9375rem system-ui;
+}
+#root.root {
+  --tabs-count-font: 0.5625rem system-ui;
+}
+#root.root {
+  --tabs-pinned-width: 32px;
+}
+#root.root {
+  --tabs-inner-gap: 10px;
+}
+#root.root {
+  --tabs-close-btn-margin: 3px;
+}
+#root.root {
+  --tabs-lvl-opacity: 0.01;
+}
+#root.root {
+  --tabs-activated-bg: rgba(255, 255, 255, 0.141);
+}
+#root.root {
+  --tabs-normal-fg: #ccc;
+}
+#root.root {
+  --tabs-border-radius: 0.5em;
+}
