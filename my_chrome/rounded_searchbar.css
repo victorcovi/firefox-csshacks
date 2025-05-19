@@ -1,0 +1,23 @@
+/* Change the URL bar features */
+#urlbar {
+    border-radius: 10px !important; /* Adjust the radius value as needed */
+}
+
+/* The "container" of the URL bar */
+#urlbar-background {
+  border-radius: 10px !important; /* Should match the value above */
+}
+
+/* When the URL bar is focused/active */
+#urlbar[focused="true"] > #urlbar-background {
+  border-radius: 10px !important;
+}
+
+/* For the results dropdown panel */
+.urlbarView {
+  border-radius: 0 0 10px 10px !important; /* Rounded at bottom corners only */
+}
+
+#searchbar {
+    border-radius: 10px !important;
+}
