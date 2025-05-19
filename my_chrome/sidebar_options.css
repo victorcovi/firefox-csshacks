@@ -7,8 +7,6 @@ html:not([privatebrowsingmode="temporary"]) #sidebar-header {
 }
 
 #urlbar {
-  left: 50% !important;
-  transform: translateX(-50%);
   max-width: 960px !important;
 }
 
