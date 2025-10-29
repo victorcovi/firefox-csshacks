@@ -65,21 +65,21 @@ if [ -d "chrome" ]; then
     echo "• 🟡 • Chrome folder exists. Preserving existing structure..."
     
     # Backup existing chrome folder (optional safety measure)
-    timestamp=$(date +%Y%m%d-%H%M%S)
-    backup_name="chrome-backup-$timestamp"
-    cp -r chrome "$backup_name"
-    echo "• • • Backup created as: $backup_name"
+    # timestamp=$(date +%Y%m%d-%H%M%S)
+    # backup_name="chrome-backup-$timestamp"
+    # cp -r chrome "$backup_name"
+    # echo "• • • Backup created as: $backup_name"
     
     # Copy theme contents while preserving existing .git and .gitignore, and excluding specified paths
     if command -v rsync >/dev/null 2>&1; then
         echo "• • • Using rsync to merge theme contents..."
-        rsync -av --exclude=".github" --exclude=".autoconfig" --exclude=".git" --exclude=".gitignore" "$temp_dir/theme/chrome/" "chrome/"
+        rsync -av --exclude=".github" --exclude=".autoconfig" --exclude=".git" --exclude=".gitignore" "$temp_dir/theme/" "chrome/"
     else
         echo "• • • Using cp to merge theme contents (rsync not available)..."
         # Create a temporary copy without the excluded directories
         temp_clean=$(mktemp -d)
-        cp -r "$temp_dir/theme/chrome/"* "$temp_clean/" 2>/dev/null || true
-        cp -r "$temp_dir/theme/chrome/".* "$temp_clean/" 2>/dev/null || true
+        cp -r "$temp_dir/theme/"* "$temp_clean/" 2>/dev/null || true
+        cp -r "$temp_dir/theme/".* "$temp_clean/" 2>/dev/null || true
         
         # Remove excluded directories from temporary copy
         rm -rf "$temp_clean/.github" 2>/dev/null || true
@@ -98,10 +98,10 @@ else
     mkdir -p chrome
     
     if command -v rsync >/dev/null 2>&1; then
-        rsync -av --exclude=".github" --exclude=".autoconfig" --exclude=".git" --exclude=".gitignore" "$temp_dir/theme/chrome/" "chrome/"
+        rsync -av --exclude=".github" --exclude=".autoconfig" --exclude=".git" --exclude=".gitignore" "$temp_dir/theme/" "chrome/"
     else
-        cp -r "$temp_dir/theme/chrome/"* "chrome/" 2>/dev/null || true
-        cp -r "$temp_dir/theme/chrome/".* "chrome/" 2>/dev/null || true
+        cp -r "$temp_dir/theme/"* "chrome/" 2>/dev/null || true
+        cp -r "$temp_dir/theme/".* "chrome/" 2>/dev/null || true
         # Remove excluded directories
         rm -rf "chrome/.github" 2>/dev/null || true
         rm -rf "chrome/.autoconfig" 2>/dev/null || true
@@ -111,8 +111,8 @@ else
 fi
 
 # Handle user.js separately
-if [ -f "$temp_dir/theme/chrome/user.js" ]; then
-    cp "$temp_dir/theme/chrome/user.js" "user.js"
+if [ -f "$temp_dir/theme/user.js" ]; then
+    cp "$temp_dir/theme/user.js" "user.js"
     echo "• • • user.js found, copying user.js to profile."
 fi
 
