@@ -2,11 +2,3 @@
 
 /* Import your desired components first */
 /* @import url(chrome/window_control_placeholder_support.css); */
-@import url(chrome/hide_tabs_toolbar_v2.css);
-
-@import url(my_chrome/rounded_searchbar.css);
-@import url(my_chrome/titlebar_options.css);
-@import url(my_chrome/sidebar_options.css);
-@import url(my_chrome/autohide_sidebar.css);
-@import url(my_chrome/custom_find_bar.css);
-@import url(my_chrome/reduce_navbar_limit_spaces.css);
