@@ -102,6 +102,10 @@ See the above repository for updates as well as full license text. */
   --uc-scrollbutton-display: none;
   --uc-scrollbox-overflow: auto;
 }
+slot[part="items-wrapper"]{
+  display: inherit !important;
+  -webkit-box-orient: vertical;
+}
 scrollbox[orient="horizontal"]{
   display: var(--uc-scrollbox-box-model,flex);
   -webkit-box-orient: vertical;
