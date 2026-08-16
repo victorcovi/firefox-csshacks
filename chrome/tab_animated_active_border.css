@@ -9,7 +9,7 @@ See the above repository for updates as well as full license text. */
   grid-area: 1/1;
   content: "";
   display: inherit;
-  margin-block: var(--tab-block-margin);
+  margin-block: var(--tab-margin-block,var(--tab-block-margin,0px));
   border-radius: var(--tab-border-radius);
   z-index: 0;
   background-image: conic-gradient(

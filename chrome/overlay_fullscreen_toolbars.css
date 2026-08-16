@@ -15,7 +15,7 @@ See the above repository for updates as well as full license text. */
         pointer-events: none;
         opacity: 0;
         transition: transform var(--uc-fullscreen-overlay-duration) ease-in-out var(--uc-fullscreen-overlay-delay), opacity 0ms calc(var(--uc-fullscreen-overlay-delay) + 82ms);
-        transform: translateY(calc(0px - var(--tab-min-height) - (var(--tab-block-margin) * 2) - var(--urlbar-container-height)));
+        transform: translateY(calc(0px - var(--tab-min-height) - (var(--tab-margin-block,var(--tab-block-margin,0px)) * 2) - var(--urlbar-container-height)));
       }
     }
     #navigator-toolbox{

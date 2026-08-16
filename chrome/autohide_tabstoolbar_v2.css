@@ -9,16 +9,18 @@ See the above repository for updates as well as full license text. */
 }
 
 @media -moz-pref("sidebar.verticalTabs"){
+  #sidebar-container,
   #sidebar-main{
     overflow: visible !important;
     max-width: var(--tab-collapsed-width) !important;
-    z-index: var(--browser-area-z-index-toolbox-while-animating);
+    z-index: var(--browser-area-z-index-sidebar-expand-on-hover,var(--browser-area-z-index-toolbox-while-animating));
     transition: z-index 0s linear var(--uc-tabs-hide-duration);
     background: inherit;
   }
   sidebar-main{
     --tab-pinned-horizontal-count: 5; /* This needs to match whatever is used in sidebar-main.css - currently 5 */
-    background: inherit;
+    --uc-sidebar-tabs-width: calc(var(--tab-pinned-horizontal-count) * var(--tab-pinned-min-width-expanded) + 2 * var(--tab-pinned-container-margin-inline-expanded) + 1px);
+    background-color: var(--toolbox-background-color,var(--toolbox-bgcolor));
     overflow: hidden;
     min-width: var(--tab-collapsed-width);
     transition: min-width var(--uc-tabs-hide-animation-duration) ease-out var(--uc-tabs-hide-animation-delay);
@@ -28,6 +30,9 @@ See the above repository for updates as well as full license text. */
       transition-property: min-width, transform;
       border-inline-width: 0.01px 0;
     }
+  }
+  div.wrapper{
+    min-width: var(--uc-sidebar-tabs-width,initial);
   }
   :where(#navigator-toolbox[movingtab] + #browser > #sidebar-main) > sidebar-main[expanded],
   sidebar-main[expanded]:hover{
@@ -44,7 +49,7 @@ See the above repository for updates as well as full license text. */
 @media not -moz-pref("sidebar.verticalTabs"){
   :root:not([customizing],[chromehidden~="menubar"]) #navigator-toolbox:has(> :is(#toolbar-menubar,#TabsToolbar):hover),
   :root:not([customizing],[chromehidden~="menubar"]) #TabsToolbar{
-    margin-bottom: calc(0px - 2 * var(--tab-block-margin) - var(--tab-min-height));
+    margin-bottom: calc(0px - 2 * var(--tab-margin-block,var(--tab-block-margin,0px)) - var(--tab-min-height));
   }
   #toolbar-menubar:is([autohide=""],[autohide="true"]) + #TabsToolbar:not(:hover){
     -moz-window-dragging: no-drag !important;
@@ -61,6 +66,10 @@ See the above repository for updates as well as full license text. */
     transition: margin-bottom var(--uc-tabs-hide-animation-duration) ease-out var(--uc-tabs-hide-animation-delay) !important;
     --browser-area-z-index-toolbox: 3;
   }
+  /* This effectively sets nav-bar to be as tall as tabs toolbar, need to do this so that background from body is drawn in an empty area between tabs tabs and nav-bar */
+  #nav-bar{
+    height: calc(2 * var(--tab-margin-block,var(--tab-block-margin,0px)) + var(--tab-min-height));
+  }
   #TabsToolbar:not([customizing]){
     visibility: hidden;
     position: relative;
@@ -72,7 +81,7 @@ See the above repository for updates as well as full license text. */
   #navigator-toolbox:has(> :is(#toolbar-menubar,#TabsToolbar):hover),
   #navigator-toolbox[movingtab]{
     transition-delay: 0s !important;
-    margin-bottom: calc(0px - 2 * var(--tab-block-margin) - var(--tab-min-height));
+    margin-bottom: calc(0px - 2 * var(--tab-margin-block,var(--tab-block-margin,0px)) - var(--tab-min-height));
     > #TabsToolbar{
       visibility: visible;
       margin-bottom: 0px;
@@ -81,7 +90,7 @@ See the above repository for updates as well as full license text. */
   }
   @media -moz-pref("userchrome.autohidetabs.show-while-inactive.enabled"){
     #navigator-toolbox:-moz-window-inactive{
-      margin-bottom: calc(0px - 2 * var(--tab-block-margin) - var(--tab-min-height));
+      margin-bottom: calc(0px - 2 * var(--tab-margin-block,var(--tab-block-margin,0px)) - var(--tab-min-height));
       > #TabsToolbar{
         visibility: visible;
         margin-bottom: 0px;
