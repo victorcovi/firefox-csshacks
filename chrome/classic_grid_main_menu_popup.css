@@ -7,8 +7,8 @@ See the above repository for updates as well as full license text. */
 #appMenu-mainView{ max-width: initial !important; }
 
 #appMenu-mainView > .panel-subview-body{
-  display: flex; 
-  flex-direction: row; 
+  display: flex;
+  flex-direction: row !important;
   max-width: 290px;
   height: 466px !important;
   /* Raise this if you see scrollbar in the popup. Popup height depends on font-size */
@@ -30,7 +30,7 @@ See the above repository for updates as well as full license text. */
   flex-grow:1;
 }
 #appMenu-mainView > .panel-subview-body > toolbarbutton > .toolbarbutton-icon{
-  -moz-box-flex: 1;
+  -moz-context-properties: fill;
 }
 #appMenu-mainView > .panel-subview-body > toolbarbutton{
   flex-direction: column;
@@ -40,12 +40,15 @@ See the above repository for updates as well as full license text. */
   padding-inline: 4px !important;
   margin-inline: 8px !important;
   fill: currentColor;
+  justify-content: center !important;
 }
 
 #appMenu-mainView > .panel-subview-body > .subviewbutton > .toolbarbutton-text{
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   max-width: 70px;
+  max-height: 1.4em;
+  flex-grow: 0 !important;
 }
 
 /* Unique styling for Edit and Zoom controls */
@@ -110,7 +113,7 @@ See the above repository for updates as well as full license text. */
 /* Set minimum width for "full-row" items */
 #appMenu-fxa-status2,
 #appMenu-fxa-separator{
-  width: 280px; 
+  width: 280px;
 }
 
 #appMenu-update-banner,
@@ -201,6 +204,7 @@ See the above repository for updates as well as full license text. */
 #appMenu-quit-button2:hover{ background-color: rgb(220,100,100) !important; }
 
 /* Missing icons */
+#appMenu-empty-profiles-button{ list-style-image: url("chrome://browser/skin/topsites.svg") }
 #appMenu-update-banner{ list-style-image: url("chrome://global/skin/icons/reload.svg"); }
 #appMenu-new-tab-button2{ list-style-image: url("chrome://browser/skin/new-tab.svg") }
 #appMenu-new-window-button2{ list-style-image: url("chrome://browser/skin/window.svg") }

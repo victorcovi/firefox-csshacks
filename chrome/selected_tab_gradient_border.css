@@ -16,7 +16,7 @@ See the above repository for updates as well as full license text. */
   min-height: inherit;
   border-radius: var(--tab-border-radius);
   grid-area: 1/1;
-  margin-block: var(--tab-block-margin);
+  margin-block: var(--tab-margin-block,var(--tab-block-margin,0px));
   /* Edit gradient colors here */
   background: repeat linear-gradient(90deg,#f0f,#ff0,#0ff)!important;
 }
