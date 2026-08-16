@@ -9,6 +9,7 @@ See the above repository for updates as well as full license text. */
   --uc-tab-curve-size: 17px; /* 10px looks about like chromium - 17px looks close to Australis tabs */
   --uc-tabs-scrollbutton-border: 0px;
   --tab-block-margin:0px;
+  --tab-margin-block: 0px;
   --tab-min-height: 34px;
   --uc-tab-line-color: rgb(10, 132, 255); /* This is only used when the first optional section is enabled, see below */
   --uc-curve-stroke-opacity: 1; /* can be used to decrease curve border contrast */
@@ -30,7 +31,10 @@ See the above repository for updates as well as full license text. */
 .tab-context-line{
   order: 1;
 }
-#TabsToolbar{ --toolbarbutton-inner-padding: 6px !important; }
+#TabsToolbar{
+  --toolbarbutton-inner-padding: 6px !important;
+  --toolbarbutton-padding-inner: 6px !important;
+}
 
 .titlebar-spacer[type="pre-tabs"],
 .tabbrowser-tab::after{ border: none !important; }
@@ -70,13 +74,13 @@ See the above repository for updates as well as full license text. */
 
 .tabbrowser-tab:is([selected],[multiselected]) > .tab-stack::before,
 .tabbrowser-tab:is([selected],[multiselected]) > .tab-stack::after{
-  fill: var(--tab-selected-bgcolor,var(--toolbar-bgcolor)) !important;
+  fill: var(--tab-selected-bgcolor,var(--toolbar-background-color,var(--toolbar-bgcolor))) !important;
   stroke: var(--lwt-tabs-border-color,transparent);
 }
 
 :root[lwtheme] .tabbrowser-tab:is([selected],[multiselected]) > .tab-stack::before,
 :root[lwtheme] .tabbrowser-tab:is([selected],[multiselected]) > .tab-stack::after{
-  fill: var(--tab-selected-bgcolor,var(--toolbar-bgcolor)) !important;
+  fill: var(--tab-selected-bgcolor,var(--toolbar-background-color,var(--toolbar-bgcolor))) !important;
 }
 .tabbrowser-tab:is([selected],[multiselected]) > .tab-stack::after,
 .tabbrowser-tab:hover > .tab-stack::after{
@@ -124,17 +128,18 @@ tab-group[collapsed] > .tabbrowser-tab{
 @media -moz-pref("userchrome.curved_tabs.extra-border.enabled"){
   #navigator-toolbox{ --lwt-tabs-border-color: color-mix(in srgb, currentcolor, white 50%) !important; }
   :root[lwtheme-brighttext] #navigator-toolbox{ --lwt-tabs-border-color: color-mix(in srgb, currentcolor, black 50%) !important; }
-  #tabbrowser-tabs{ --lwt-selected-tab-background-color: var(--toolbar-bgcolor) }
+  #tabbrowser-tabs{ --lwt-selected-tab-background-color: var(--toolbar-background-color,var(--toolbar-bgcolor)) }
   .tab-background:is([selected],[multiselected]){
     border-top: none !important;
     --toolbar-bgcolor: transparent;
+    --toolbar-background-color: transparent;
   }
   :root:not([lwtheme]) .tab-background{
     background-color: var(--lwt-selected-tab-background-color) !important;
   }
   .tabbrowser-tab:is([selected],[multiselected]) > .tab-stack::before,
   .tabbrowser-tab:is([selected],[multiselected]) > .tab-stack::after{
-    fill: var(--lwt-selected-tab-background-color,var(--toolbar-bgcolor)) !important;
+    fill: var(--lwt-selected-tab-background-color,var(--toolbar-background-color,var(--toolbar-bgcolor))) !important;
   }
   .tabbrowser-tab:is([selected],[multiselected]) > .tab-stack::before{
     left: calc(1px - var(--uc-tab-curve-size));

@@ -43,11 +43,11 @@ See the above repository for updates as well as full license text. */
 
 :root[sessionrestored] #nav-bar,
 :root[sessionrestored] #PersonalToolbar{
-  background-image: linear-gradient(var(--toolbar-bgcolor),var(--toolbar-bgcolor)), var(--lwt-additional-images,var(--toolbar-bgimage))  !important;
+  background-image: linear-gradient(var(--toolbar-background-color,var(--toolbar-bgcolor,transparent))), var(--lwt-additional-images,var(--toolbar-bgimage)), var(--toolbox-background-image,none)  !important;
   background-position: top,var(--lwt-background-alignment);
-  background-position-y: calc(0px - var(--tab-min-height) - 2*var(--tab-block-margin,0px));
+  background-position-y: calc(0px - var(--tab-min-height) - 2*var(--tab-margin-block,var(--tab-block-margin,0px)));
   background-repeat: repeat,var(--lwt-background-tiling);
-  transform: rotateX(90deg);
+  transform: rotateX(89.9deg);
   transform-origin: top;
   transition: transform 135ms linear var(--uc-autohide-toolbar-delay) !important;
   z-index: 2;
@@ -59,12 +59,12 @@ See the above repository for updates as well as full license text. */
 }
 :root[sessionrestored] #PersonalToolbar{
   z-index: 1;
-  background-position-y: calc(0px - var(--tab-min-height) - 2*var(--tab-block-margin,0px) + var( --uc-navbar-height));
+  background-position-y: calc(0px - var(--tab-min-height) - 2*var(--tab-margin-block,var(--tab-block-margin,0px)) + var( --uc-navbar-height));
 }
 
 :root[lwtheme-image] #nav-bar,
 :root[lwtheme-image] #PersonalToolbar{
-  background-image: linear-gradient(var(--toolbar-bgcolor),var(--toolbar-bgcolor)),var(--lwt-header-image), var(--lwt-additional-images,var(--toolbar-bgimage)) !important;
+  background-image: linear-gradient(var(--toolbar-background-color,var(--toolbar-bgcolor,transparent))),var(--lwt-header-image), var(--lwt-additional-images,var(--toolbar-bgimage)), var(--toolbox-background-image,none) !important;
 }
 
 #nav-bar[customizing],#PersonalToolbar[customizing]{ transform: none !important }
@@ -73,26 +73,28 @@ See the above repository for updates as well as full license text. */
   transform-origin: 0px var(--uc-navbar-height);
   position: relative;
 }
-:root[sessionrestored] :is(.urlbar,#urlbar[popover]){
+/* Using :popover-open here seems weird, but before bug 2022527 Firefox used to make the :popover "always-open" as a hacky workaround for another issue.
+ But now that the hack was removed, we don't want to apply these rules anymore. */
+:root[sessionrestored] :is(.urlbar:popover-open,#urlbar:popover-open){
   opacity: 0;
   pointer-events: none;
   transition: transform 135ms linear var(--uc-autohide-toolbar-delay), opacity 0ms calc(var(--uc-autohide-toolbar-delay) + 135ms);
   transform-origin: 0px calc((var(--urlbar-container-height) - var(--urlbar-height)) / 2);
   transform: rotateX(89.5deg);
 }
-:root:is([window-modal-open],[customizing]) toolbar :is(.urlbar,#urlbar[popover]),
-#mainPopupSet:has(> [panelopen]:not(#ask-chat-shortcuts,#selection-shortcut-action-panel,#chat-shortcuts-options-panel,#tab-preview-panel)) ~ toolbox :is(.urlbar,#urlbar[popover]),
-#navigator-toolbox:is(:hover,:focus-within) :is(.urlbar,#urlbar[popover]),
-:where(:root[sessionrestored]) #nav-bar #searchbar-new[popover]:is([focused],[open]),
-:where(:root[sessionrestored]) #urlbar-container > #urlbar[popover]:is([focused],[open]){
+:root:is([window-modal-open],[customizing]) toolbar :is(.urlbar:popover-open,#urlbar:popover-open),
+#mainPopupSet:has(> [panelopen]:not(#ask-chat-shortcuts,#selection-shortcut-action-panel,#chat-shortcuts-options-panel,#tab-preview-panel)) ~ toolbox :is(.urlbar:popover-open,#urlbar:popover-open),
+#navigator-toolbox:is(:hover,:focus-within) :is(.urlbar:popover-open,#urlbar:popover-open),
+:where(:root[sessionrestored]) #nav-bar #searchbar-new:popover-open:is([focused],[open]),
+:where(:root[sessionrestored]) #urlbar-container > #urlbar:popover-open:is([focused],[open]){
   opacity: 1;
   pointer-events: auto;
   transition-delay: 100ms;
   transform: rotateX(0deg);
 }
 
-:root[sessionrestored]:not([customizing]) #navigator-toolbox{
-  margin-bottom:  calc(var(--uc-toolbox-browser-area-overlap,0px) - var(--uc-bm-height) + var(--uc-navbar-height));
+:root[sessionrestored]:not([customizing]) :where(#navigator-toolbox){
+  margin-bottom:  calc(var(--uc-toolbox-browser-area-overlap,0px) - var(--uc-bm-height) + var(--uc-navbar-height)) !important;
 }
 
 /* Make sure the bookmarks toolbar is never collapsed even if it is disabled */
@@ -149,7 +151,7 @@ See the above repository for updates as well as full license text. */
 }
 @media -moz-pref("browser.fullscreen.autohide"){
   :root[sizemode="fullscreen"] #navigator-toolbox[style*="margin-top"]{
-    margin-top: calc(1px - var(--tab-min-height) - 2 * var(--tab-block-margin)) !important;
+    margin-top: calc(1px - var(--tab-min-height) - 2 * var(--tab-margin-block,var(--tab-block-margin,0px))) !important;
   }
 }
 
