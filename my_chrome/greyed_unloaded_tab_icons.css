@@ -1,0 +1,11 @@
+:root {
+  --tweaks-unloaded-icon-grayscale: 100%;
+  --tweaks-unloaded-icon-opacity: 0.6;
+}
+
+/* Grey out the favicon of tabs that aren't loaded (pending or discarded) */
+.tabbrowser-tab[pending] .tab-icon-image,
+.tabbrowser-tab[discarded] .tab-icon-image {
+  filter: grayscale(var(--tweaks-unloaded-icon-grayscale)) !important;
+  opacity: var(--tweaks-unloaded-icon-opacity) !important;
+}
