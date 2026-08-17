@@ -6,9 +6,20 @@ See the above repository for updates as well as full license text. */
   --uc-scrollbutton-display-model: none;
 }
 
-scrollbox{ overflow-y: var(--uc-scrollbox-overflow,initial) !important; }
+scrollbox[orient="vertical"]{
+  display: var(--uc-scrollbox-display-model,revert-rule) !important;
+  overflow-y: var(--uc-scrollbox-overflow,initial) !important;
+}
 
 #scrollbutton-up,
 #scrollbutton-down{
   display: var(--uc-scrollbutton-display-model,initial) !important;
+}
+
+/* This is a test for Firefox 154, with 154 we need to change the behavior a bit */
+@supports (text-box-trim: none){
+  .menupopup-arrowscrollbox{
+     --uc-scrollbox-display-model: contents;
+     overflow-y: auto !important;
+  }
 }

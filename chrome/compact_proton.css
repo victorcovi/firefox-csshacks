@@ -5,9 +5,11 @@ See the above repository for updates as well as full license text. */
 
 :root{
   --toolbarbutton-inner-padding: 6px !important;
+  --toolbarbutton-padding-inner: 6px !important;
   --tab-block-margin: 2px !important;
   --tabs-shadow-size: 0px !important;
   --arrowpanel-menuitem-padding-block: 5px !important;
+  --panel-menuitem-padding-block: 5px !important;
   --panel-font-size: inherit !important;
   --arrowpanel-padding: 0.8em !important;
   --inline-tab-padding: 8px !important; /* 8px is default value since it looks good - lower values compactify tabs horizontally */
