@@ -12,7 +12,6 @@ See the above repository for updates as well as full license text. */
   width: 0;
   transition: min-width 100ms ease-out, max-width 100ms ease-out;
   margin-inline-start: 0px !important;
-  position: initial !important;
   display: flex !important
 }
 .tab-content{ min-width: 0 }
@@ -21,8 +20,6 @@ See the above repository for updates as well as full license text. */
 }
 .tabbrowser-tab[pinned] > .tab-stack{ border: none !important; }
 .tabbrowser-tab[pinned]::after{ position: static !important; margin-block: 0px 1px !important; }
-
-.tabbrowser-tab[selected]{ position: relative !important; }
 
 .tab-label-container{ width: unset !important; }
 .tab-label-container[pinned]{ margin-inline-start: 8px }
