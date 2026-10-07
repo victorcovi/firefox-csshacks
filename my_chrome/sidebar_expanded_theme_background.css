@@ -1,0 +1,25 @@
+/* Match the vertical tabs sidebar to its "always expanded" look in
+ * expand-on-hover mode. On macOS, the always-expanded sidebar shows body:
+ * the native vibrant titlebar material under the Nova gradient.
+ * Expand-on-hover paints an extra surface color on the container (darker),
+ * and when expanded swaps the native material for a #202020 backdrop. */
+:root[sidebar-expand-on-hover] #sidebar-container {
+  /* Collapsed: let body show through, as when always expanded. */
+  background: transparent !important;
+
+  /* Expanded or collapsing: it overlays web content and vibrancy can't be
+   * drawn here, so use a solid color sampled from the collapsed sidebar.
+   * Sampled in display space (Firefox doesn't color-manage CSS colors) from
+   * the collapsed sidebar in an active window. */
+  &:is(
+    [sidebar-launcher-expanded],
+    [sidebar-ongoing-animations]:not([sidebar-launcher-expanded])
+  ) {
+    background: #312a43 !important;
+
+    /* The native material is slightly darker in background windows. */
+    &:-moz-window-inactive {
+      background: #2e2742 !important;
+    }
+  }
+}
