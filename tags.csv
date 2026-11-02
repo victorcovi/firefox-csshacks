@@ -89,7 +89,7 @@ deprecated/multi-row_tabs_Fx66+.css,legacy
 deprecated/multi-row_tabs_below_content.css,legacy
 deprecated/multi-row_tabs_below_content_legacy.css,legacy
 deprecated/multi-row_tabs_legacy.css,legacy
-multi-row_tabs_separate_pinned_row_patch.css,tabs,multi-row,patch
+deprecated/multi-row_tabs_separate_pinned_row_patch.css,tabs,multi-row,patch
 multi-row_tabs_window_control_patch.css,patch,multi-row,window-control
 navbar_below_content.css,nav-bar,toolbars
 deprecated/navbar_tabs_oneliner.css,legacy
@@ -124,7 +124,8 @@ show_navbar_on_focus_only.css,urlbar,nav-bar,toolbars,hiding
 show_toolbars_in_popup_windows.css,toolbars,popup
 show_urlbar_button.css,urlbar,hack,hiding
 show_window_title_in_menubar.css,windows,menubar
-shrinking_pinned_tabs.css,tab,
+shrinking_pinned_tabs.css,tab
+sidebar_buttons_above_sidebar.css,sidebar,autohide
 status_inside_menubar.css,menubar,status,hack
 status_inside_urlbar.css,status,urlbar,hack
 status_inside_urlbar_v2.css,status,urlbar,status,effect,hack
@@ -161,6 +162,7 @@ urlbar_centered_text.css,urlbar
 urlbar_connection_type_background_colors.css,urlbar,colors,status
 urlbar_connection_type_text_colors.css,urlbar,colors,status
 urlbar_container_color_border.css,colors,urlbar
+urlbar_fitts_flat_top.css,urlbar
 urlbar_info_icons_on_hover.css,autohide,icon,urlbar,minimal
 urlbar_popup_full_width.css,urlbar,popup
 urlbar_results_in_two_rows.css,urlbar,popup
