@@ -1,0 +1,9 @@
+/* With vertical tabs the nav-bar is the top edge of the window. Firefox only
+ * treats it as the titlebar (transparent, showing body like the sidebar) when
+ * the custom titlebar is enabled, which is the default on macOS and Windows.
+ * With a native titlebar (common on Linux) it gets the --toolbar-background-color
+ * overlay instead, so it ends up a darker shade than the vertical tabs area.
+ * Make it transparent in that case too, as Firefox does for .browser-titlebar. */
+:root:not([customtitlebar]) #navigator-toolbox[tabs-hidden] :is(#nav-bar, #PersonalToolbar) {
+  background-color: transparent !important;
+}
